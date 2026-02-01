@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Arial, sans-serif;
+  overflow:hidden;
+}
+.screen{
+  background:#111;
+  color:white;
+  width:320px;
+  padding:25px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 0 30px rgba(255,0,100,0.5);
+}
+h1{color:#ff4e8c;}
+.photos{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  margin:15px 0;
+}
+.photos img{
+  width:120px;
+  height:160px;
+  object-fit:cover;
+  border-radius:15px;
+  border:2px solid #ff4e8c;
+}
+button{
+  padding:12px 28px;
+  border:none;
+  border-radius:25px;
+  font-size:16px;
+  margin:10px;
+  cursor:pointer;
+}
+#yes{background:#ff4e8c;color:white;}
+#no{background:#555;color:white;position:relative;}
+.heart{
+  position:absolute;
+  font-size:28px;
+  animation:pop 1s ease forwards;
+}
+@keyframes pop{
+  0%{transform:scale(0);}
+  100%{transform:scale(2);opacity:0;}
+}
+</style>
+</head>
+
+<body onclick="instaHeart(event)">
+
+<div class="screen" id="screen">
+  <h1>Will you be my Valentine? 💖</h1>
+
+  <div class="photos">
+    <img src="her.jpg">
+    <img src="us.jpg">
+  </div>
+
+  <button id="yes" onclick="valentineYes()">Yes 💘</button>
+  <button id="no" onmouseover="moveNo()">No 💔</button>
+</div>
+
+<script>
+function moveNo(){
+  const no=document.getElementById("no");
+  no.style.left=Math.random()*200-100+"px";
+  no.style.top=Math.random()*200-100+"px";
+}
+
+function instaHeart(e){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=e.clientX+"px";
+  h.style.top=e.clientY+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),1000);
+}
+
+function valentineYes(){
+  document.getElementById("screen").innerHTML=`
+    <h1>I knew it 😍💖</h1>
+    <p>You make my life beautiful ❤️</p>
+    <button id="yes" onclick="proposal()">Next ➡️</button>
+  `;
+}
+
+function proposal(){
+  document.body.innerHTML=`
+    <h1 style="color:#ff4e8c;text-align:center;">
+      Will you marry me? 💍❤️<br><br>
+      Forever starts with us ✨
+    </h1>
+  `;
+}
+</script>
+
+</body>
+</html>
